@@ -1,38 +1,62 @@
-.App {
+.chat {
+  padding: 1px 1px 50px;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.chat__history {
+  transition: all ease-in 300ms;
+}
+
+.chat__form-wrapper {
+  position: fixed;
+  max-width: 600px;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 10px;
+  background: #fff;
+}
+
+.chat__form {
+  bottom: 10px;
+  display: flex;
+  border: 1px solid #000;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.chat__input {
+  outline: none;
+  border: none;
+  padding: 0 5px;
+  font-size: 16px;
+  line-height: 30px;
+  height: 30px;
+  flex: 1;
+}
+
+.chat__send-button {
+  color: #1cc82f;
+  cursor: pointer;
+  background: 0;
+  outline: none;
+  border: 0;
+  padding: 0 5px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 25px;
+}
+
+.message {
+  max-width: 70%;
+  border-radius: 10px;
+  padding: 20px 10px;
+  border: 1px solid #000;
+  margin: 10px auto 10px 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.message_mine {
+  margin: 10px 0 10px auto;
 }

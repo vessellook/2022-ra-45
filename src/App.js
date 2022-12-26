@@ -1,25 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import { getCookie } from './utils';
+import Chat from './components/Chat';
+import {v4 as uuidv4 } from 'uuid';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  let userId = getCookie('userId');
+  if (userId == null) {
+    userId = uuidv4();
+    document.cookie = `userId=${userId}`;
+  }
+
+  return <Chat userId={userId} />;
 }
 
 export default App;
