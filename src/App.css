@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+.title {
+  font-size: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-title {
+  margin: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-end;
+  border: 1px solid #000;
+  max-width: 400px;
+  min-height: 100px;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+.form__input {
+  border: none;
+  resize: none;
+  outline: none;
+  flex: 1;
+  min-height: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.update-button {
+  color: green;
+  margin-left: 20px;
+}
+
+.update-button,
+.form__button,
+.note__delete-button {
+  outline: none;
+  background: #fff;
+  border-radius: 50%;
+  border: 1px solid #000;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  line-height: 40px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.update-button:hover,
+.form__button:hover,
+.note__delete-button:hover {
+  background: #eee;
+}
+
+.update-button,
+.form__button,
+.note__delete-button {
+
+}
+
+.notes {
+  padding: 30px;
+}
+
+.notes:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.note {
+  position: relative;
+  border: 1px solid #000;
+  float: left;
+  margin: 20px;
+  padding: 20px;
+  max-width: 400px;
+  word-wrap: break-word;
+}
+
+.note__delete-button {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  color: red;
+  font-size: 35px;
 }
