@@ -8,5 +8,5 @@
 Необходимо запускать отдельно сервис с [бекендом](https://github.com/netology-code/ra16-homeworks/tree/master/lifecycle-http/chat/backend) и передать адрес бекенда
 
 ```
-cp template.env .env.loca
+cp template.env .env.local
 ```
