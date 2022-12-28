@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import AuthContext from './AuthContext';
+import { useLocalStorageState } from './hooks/useStorageState';
+import { useMemo } from 'react';
+import ProfileContext from './ProfileContext';
+import useProfile from './hooks/useProfile';
+import Header from './components/Header';
 
 function App() {
+  const [token, setToken] = useLocalStorageState('auth-token');
+  const profile = useProfile(token);
+  const authValue = useMemo(
+    () => ({ token, setToken, guest: token == null }),
+    [token, setToken]
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={authValue}>
+      <ProfileContext.Provider value={profile}>
+        <Header />
+      </ProfileContext.Provider>
+    </AuthContext.Provider>
   );
 }
 
