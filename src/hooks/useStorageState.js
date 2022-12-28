@@ -9,7 +9,7 @@ const setItem = (storage, key, value) => {
   }
 };
 
-const useStorageStateFactory = (storage) => (key, initialState) => {
+const useStorageStateFactory = (storage, key, initialState) => {
   const [state, setState] = useState(() => {
     const valueFromStorage = storage.getItem(key);
     if (valueFromStorage == null) {
@@ -28,7 +28,7 @@ const useStorageStateFactory = (storage) => (key, initialState) => {
         return newState;
       });
     },
-    [key]
+    [storage, key]
   );
 
   useEffect(() => {
@@ -41,10 +41,12 @@ const useStorageStateFactory = (storage) => (key, initialState) => {
     window.addEventListener('storage', handleStorage, { passive: true });
 
     return () => window.removeEventListener('storage', handleStorage);
-  }, [key]);
+  }, [storage, key]);
 
   return [state, setStateProxy];
 };
 
-export const useLocalStorageState = useStorageStateFactory(localStorage);
-export const useSessionStorageState = useStorageStateFactory(sessionStorage);
+export const useLocalStorageState = (key, initialState) =>
+  useStorageStateFactory(localStorage, key, initialState);
+export const useSessionStorageState = (key, initialState) =>
+  useStorageStateFactory(sessionStorage, key, initialState);

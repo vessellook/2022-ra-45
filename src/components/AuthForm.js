@@ -21,12 +21,10 @@ const AuthFormView = ({loading, error, onLogin}) => {
 
   const handleChangeUsername = (event) => {
     setLogin(event.target.value);
-    setError(null);
   };
 
   const handleChangePassword = (event) => {
     setPassword(event.target.value);
-    setError(null);
   };
 
   return (
@@ -56,7 +54,7 @@ const AuthForm = () => {
   const [body, setBody] = useState(null);
   const opts = useMemo(() => {
     if (body != null) {
-      return { body };
+      return { body: JSON.stringify(body), method: 'POST' };
     }
   }, [body]);
   const [data, loading, error] = useJsonFetch(authEndpoint, opts, {
@@ -64,10 +62,10 @@ const AuthForm = () => {
   });
 
   useEffect(() => {
-    if (!loading && !error) {
-      setToken(data.token);
+    if (!loading && !error && data) {
+      setToken(data);
     }
-  }, [data, loading, error]);
+  }, [setToken, data, loading, error]);
 
   const handleLogin = (data) => setBody(data);
 

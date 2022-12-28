@@ -12,12 +12,12 @@ const useJsonStateProxy = (state, setState, skip) => {
   const stringifyAndSetState = useCallback((newState) => {
     setState((oldState) => {
       newState = dispatchState(newState, oldState);
-      if (skip || typeof state !== 'string') {
+      if (skip || typeof newState !== 'string') {
         setState(newState);
       }
       return JSON.stringify(newState);
-    }, [setState, skip]);
-  });
+    });
+  }, [setState, skip]);
 
   return [parsedState, stringifyAndSetState];
 };
