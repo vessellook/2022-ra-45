@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { getAuthenticationHeader } from '../api';
+import { getAuthorizationHeader } from '../api';
 
 const useAuthHeader = (token, opts) => {
   return useMemo(() => {
@@ -9,7 +9,7 @@ const useAuthHeader = (token, opts) => {
 
     const headers = {
       ...opts?.headers,
-      Authentication: getAuthenticationHeader(token),
+      Authorization: getAuthorizationHeader(token),
     };
 
     return { ...opts, headers };

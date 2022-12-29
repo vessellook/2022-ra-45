@@ -9,17 +9,19 @@ const Header = () => {
   const { guest } = useContext(AuthContext);
   if (guest) {
     return (
-      <div>
+      <div className="header">
         <Logo />
         <AuthForm />
       </div>
     );
   }
   return (
-    <div>
+    <div className="header">
       <Logo />
-      <Profile/>
-      <Logout/>
+      <div className='header__right'>
+        <Profile />
+        <Logout />
+      </div>
     </div>
   );
 };

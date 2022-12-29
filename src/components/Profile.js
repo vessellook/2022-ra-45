@@ -11,7 +11,11 @@ const ProfileView = ({ name, avatar }) => {
 };
 
 const Profile = () => {
-  const {name, avatar} = useContext(ProfileContext);
+  const user = useContext(ProfileContext);
+  if (user == null) {
+    return;
+  }
+  const {name, avatar} = user;
   return <ProfileView name={name} avatar={avatar} />;
 }
 

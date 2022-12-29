@@ -8,13 +8,13 @@ const propTypes = {
   onLogin: PropTypes.func,
 };
 
-const AuthFormView = ({loading, error, onLogin}) => {
+const AuthFormView = ({ loading, error, onLogin }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    onLogin?.({login: login, password});
+    onLogin?.({ login: login, password });
     setLogin('');
     setPassword('');
   };
@@ -28,24 +28,26 @@ const AuthFormView = ({loading, error, onLogin}) => {
   };
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <input
-        className="auth-form__field"
-        placeholder="Username"
-        value={login}
-        onChange={handleChangeUsername}
-      />
-      <input
-        className="auth-form__field"
-        placeholder="Password"
-        value={password}
-        onChange={handleChangePassword}
-      />
+    <div className="auth-form">
+      <form className="auth-form__form" onSubmit={handleSubmit}>
+        <input
+          className="auth-form__field"
+          placeholder="Username"
+          value={login}
+          onChange={handleChangeUsername}
+        />
+        <input
+          className="auth-form__field"
+          placeholder="Password"
+          value={password}
+          onChange={handleChangePassword}
+        />
+        <button className="auth-form__button" disabled={loading}>
+          Login
+        </button>
+      </form>
       <div className="auth-form__error">{error}</div>
-      <button className="auth-form__button" disabled={loading}>
-        Login
-      </button>
-    </form>
+    </div>
   );
 };
 
@@ -54,7 +56,11 @@ const AuthForm = () => {
   const [body, setBody] = useState(null);
   const opts = useMemo(() => {
     if (body != null) {
-      return { body: JSON.stringify(body), method: 'POST' };
+      return {
+        body: JSON.stringify(body),
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      };
     }
   }, [body]);
   const [data, loading, error] = useJsonFetch(authEndpoint, opts, {
@@ -63,7 +69,7 @@ const AuthForm = () => {
 
   useEffect(() => {
     if (!loading && !error && data) {
-      setToken(data);
+      setToken(data.token);
     }
   }, [setToken, data, loading, error]);
 

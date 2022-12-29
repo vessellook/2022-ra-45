@@ -4,8 +4,9 @@ import useAuthHeader from './useAuthHeader';
 import { profileEndpoint } from '../api';
 import { useLocalStorageState } from './useStorageState';
 import useJsonStateProxy from './useJsonStateProxy';
+import { HttpError } from '../errors';
 
-const useProfile = (token, key = 'profile') => {
+const useProfile = (token, logout, key = 'profile') => {
   const opts = useAuthHeader(token);
   const [fetchedProfile, loading, error] = useJsonFetch(profileEndpoint, opts, {
     skip: token == null,
@@ -17,7 +18,10 @@ const useProfile = (token, key = 'profile') => {
     if (!loading && !error) {
       setProfile(fetchedProfile);
     }
-  }, [fetchedProfile, loading, error, setProfile]);
+    if (error && error instanceof HttpError && error.code === 401) {
+      logout();
+    }
+  }, [fetchedProfile, loading, error, setProfile, logout]);
 
   return profile;
 };

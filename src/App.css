@@ -1,38 +1,141 @@
-.App {
-  text-align: center;
+.header {
+  background: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header__right {
+  display: flex;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.auth-form__field,
+.auth-form__button {
+  height: 30px;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.auth-form__field {
+  margin-right: 10px;
+  line-height: 30px;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.auth-form__button {
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #49ae62;
+  padding: 5px 10px;
+  color: #49ae62;
+  background: transparent;
+}
+
+.auth-form__button:disabled {
+  cursor: wait;
+}
+
+.auth-form__error {
+  color: red;
+}
+
+.hero {
+  text-align: left;
+  background: #e8ebee;
+  width: 80%;
+  padding: 40px 20px 60px;
+  box-sizing: border-box;
+}
+
+.hero__title {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.fixed-ratio {
+  position: relative;
+}
+
+.fixed-ratio__inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.card {
+  max-width: 400px;
   display: flex;
   flex-direction: column;
+}
+
+.card__image {
+  width: 100%;
+}
+
+.card__body {
+  border: 1px solid #ccc;
+  padding: 15px 15px 25px;
+  border-radius: 3px;
+  flex: 1;
+}
+
+.card_with-image .card__image {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.card_with-image .card__body {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.card__title {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.news {
+  display: grid;
+  width: 80%;
+  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 30px;
+}
+
+.logout {
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #dd5260;
+  padding: 5px 10px;
+  color: #dd5260;
+  background: transparent; 
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.profile {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-right: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.profile__welcome {
+  margin-right: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.profile__image {
+  border-radius: 50%;
 }

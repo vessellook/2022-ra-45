@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { HttpError } from '../errors';
 
 const useJsonFetch = (url, opts, hookOpts) => {
   const [data, setData] = useState(null);
@@ -15,32 +16,35 @@ const useJsonFetch = (url, opts, hookOpts) => {
         setData(null);
         setLoading(true);
         setError(null);
-      }
+      };
     }
     const controller = new AbortController();
     fetch(url, { ...opts, signal: controller.signal })
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Неверный код ответа сервера ${response.status}`);
+          throw new HttpError(response.status);
         }
         return response.json();
       })
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      }, (error) => {
-        if (error.name === 'AbortError') {
-          return;
+      .then(
+        (data) => {
+          setData(data);
+          setLoading(false);
+        },
+        (error) => {
+          if (error.name === 'AbortError') {
+            return;
+          }
+          setError(error);
+          setLoading(false);
         }
-        setError(error);
-        setLoading(false);
-      });
+      );
     return () => {
       controller.abort();
       setData(null);
       setLoading(true);
       setError(null);
-    }
+    };
   }, [url, opts, skip]);
 
   return [data, loading, error];

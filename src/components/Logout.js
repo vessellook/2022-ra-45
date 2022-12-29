@@ -11,9 +11,9 @@ const LogoutView = ({ onClick }) => {
 };
 
 const Logout = () => {
-  const { setToken } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   const handleClick = () => {
-    setToken(null);
+    logout();
   };
   return <LogoutView onClick={handleClick} />;
 };

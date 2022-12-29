@@ -7,13 +7,13 @@ const Body = () => {
   const { guest } = useContext(AuthContext);
   if (guest) {
     return (
-      <div>
+      <div className='body'>
         <Hero motto="Facebook and VK killer." />
       </div>
     );
   }
   return (
-    <div>
+    <div className='body'>
       <News />
     </div>
   );
